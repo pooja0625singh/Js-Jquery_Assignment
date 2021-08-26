@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Comments</title>
+    <style>     /* CSS GOES HERE */
+        .button {
+            border-radius: 15px;
+            width: 150px;
+            height: 30px;
+            background-color:blue;
+            border: 2px solid black;
+            outline: none;
+        }
+
+        .button:hover {
+            background-color: grey;
+            color: black;
+        }
+
+        .info {
+            background-color: grey;
+            border: none;
+            border-radius: 7px;
+            padding: 1px 15px 1px 15px;
+            margin-bottom: 15px;
+            height: auto;
+        }
+
+        .info:hover {
+            background-color: skyblue;
+            border: 3px solid black;
+        }
+
+        .title {
+            font-family: arial;
+            color: black;
+
+        }
+
+        .body {
+            font-family: arial;
+            text-align: justify;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="comments" style="border: 1px solid green;padding:1rem;margin-bottom: 0.5rem;"">
+
+    </div>
+    <div>
+        <button id="load" class="button">Load Data</button>
+    </div>
+    <script>//JQ LOGIC GOES HERE
+        $(function () {
+
+    $.get("https://jsonplaceholder.typicode.com/posts", function (data) {
+
+        data.forEach(f)
+        function f(item) {
+            $('.comments').append(
+                '<div style="display:none;" id="' + item.id + '" class="info"><h3 class="title">' + item.title + '</h3><p class="body">' + item.body + '</p></div>'
+            );
+        }
+
+        $("button").click(function () {
+            $(".info").first().show(800, function showNext() {
+                $(this).next(".info").show(800, showNext);
+            });
+            $("button").click(function () { $(".info").toggle() });
+        });
+    });
+});
+
+    </script>
+</body>
+
+</html>
